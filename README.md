@@ -15,6 +15,12 @@ bower install emilcieslar/angular-ec-callout
 angular.module('yourApp', ['angular-ec-callout'])
 ```
 
+### Add the callout directive to your HTML
+Ideally add it somewhere in the top
+```html
+<ec-callout></ec-callout>
+```
+
 ### Use the service in your controller
 ```javascript
 .controller('yourController', ['ecCalloutService', function(CalloutService) {
@@ -25,6 +31,16 @@ angular.module('yourApp', ['angular-ec-callout'])
   })
 }])
 ```
+
+### Style it however you want to
+The module comes without any styling that means it can look however you want it to look. You can have a look at the example to see sample style, but you can customize it.
+
+The directive uses `callout` class, which is basically the callout wrapper. Then using `type` parameter you can specify what class should be added, for example:
+1. alert
+2. success
+and so on..
+
+The close button has class `close-button`
 
 ### Checkout example
 [Example](http://emilcieslar.github.io/angular-ec-callout/)
