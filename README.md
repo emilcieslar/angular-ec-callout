@@ -35,7 +35,7 @@ Ideally add it somewhere in the top
 ### Style it however you want to
 The module comes without any styling that means it can look however you want it to look. You can have a look at the example to see sample style, but you can customize it.
 
-The directive uses `.callout` class, which is basically the callout wrapper. Then using `type` parameter you can specify what class should be added, for example: `.alert`, `.success`, etc.
+The directive uses `.callout` class, which is basically the callout wrapper. Then using `type` parameter you can specify what class should be added, for example: `alert`, `success`, as can be seen on the service example above.
 
 The close button has class `.close-button`
 
