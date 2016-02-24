@@ -1,5 +1,5 @@
 # Angular EC Callout
-[Homepage](http://emilcieslar.github.io/angular-ec-callout/)
+[Example](http://emilcieslar.github.io/angular-ec-callout/)
 
 Reusable callout (notification) directive and service. Use it whenever you need to display a (success, error or whatever) message to a user. No dependencies (ok, angular)
 
@@ -35,12 +35,9 @@ Ideally add it somewhere in the top
 ### Style it however you want to
 The module comes without any styling that means it can look however you want it to look. You can have a look at the example to see sample style, but you can customize it.
 
-The directive uses `callout` class, which is basically the callout wrapper. Then using `type` parameter you can specify what class should be added, for example:
-1. alert
-2. success
-and so on..
+The directive uses `.callout` class, which is basically the callout wrapper. Then using `type` parameter you can specify what class should be added, for example: `.alert`, `.success`, etc.
 
-The close button has class `close-button`
+The close button has class `.close-button`
 
 ### Checkout example
 [Example](http://emilcieslar.github.io/angular-ec-callout/)
