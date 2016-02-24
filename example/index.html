@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>EC Callout</title>
+    <link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
+  </head>
+
+  <body ng-app="exampleApp" ng-controller="mainController as mainCtrl">
+    <ec-callout></ec-callout>
+
+    <button type="button" name="alert-button" ng-click="mainCtrl.callAlert()">Gimme alert callout!</button>
+    <button type="button" name="alert-button" ng-click="mainCtrl.callSuccess()">Gimme success callout!</button>
+    <button type="button" name="alert-button" ng-click="mainCtrl.callDefault()">Gimme default callout!</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="../dist/angular-ec-callout.js"></script>
+    <script src="app.js"></script>
+  </body>
+
+</html>

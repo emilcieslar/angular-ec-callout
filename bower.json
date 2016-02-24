@@ -1,0 +1,25 @@
+{
+  "name": "EC Callout",
+  "authors": [
+    "Emil Cieslar <emil.cieslar@gmail.com>"
+  ],
+  "description": "Reusable callout directive and service",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "alert",
+    "callout"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0"
+  }
+}
