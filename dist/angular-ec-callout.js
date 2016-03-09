@@ -28,7 +28,7 @@ angular.module('angular-ec-callout', [])
 }])
 
 
-.directive('ecCallout', ['ecCalloutService', function(CalloutService) {
+.directive('ecCallout', ['ecCalloutService', '$timeout', function(CalloutService, $timeout) {
 
   // Awesome fade in and fade out helper functions
   // by Chris Buttery
@@ -93,8 +93,27 @@ angular.module('angular-ec-callout', [])
 
       // When the callout notification is sent, update status and display the callout
       CalloutService.subscribe($scope, function(event, status) {
-        $scope.calloutStatus = status;
-        fadeIn($elem[0]);
+
+        // If status contains remove property, we want to remove the callout
+        if(status.remove) {
+          fadeOut($elem[0]);
+
+        // Otherwise we want to display it with data provided
+        } else {
+
+          // Set data and display callout
+          $scope.calloutStatus = status;
+          fadeIn($elem[0]);
+
+          // If timeout is set, we must hide the callout in seconds provided
+          if(status.timeout) {
+            $timeout(function() {
+              fadeOut($elem[0]);
+            },status.timeout);
+          }
+
+        }
+
       })
 
       // Catch click on close and hide the directive
