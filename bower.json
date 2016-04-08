@@ -1,6 +1,6 @@
 {
   "name": "angular-ec-callout",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "authors": [
     "Emil Cieslar <emil.cieslar@gmail.com>"
   ],
@@ -21,6 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.0"
+    "angular": "^1.5.0",
+    "angular-animate": "^1.5.3"
   }
 }

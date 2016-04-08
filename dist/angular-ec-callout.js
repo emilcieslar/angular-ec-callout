@@ -1,10 +1,10 @@
 /*
- * angular-ec-callout v0.0.0
+ * angular-ec-callout v0.0.3
  * (c) 2015 Emil Cieslar http://webkreativ.cz
  * License: MIT
  */
 
-angular.module('angular-ec-callout', [])
+angular.module('angular-ec-callout', ['ngAnimate'])
 
 .factory('ecCalloutService', ['$rootScope', function($rootScope) {
 
@@ -32,21 +32,26 @@ angular.module('angular-ec-callout', [])
 
   // Return the directive
   return {
+
     restrict: 'AE',
     scope: false,
+
     link: function($scope, $elem, $attrs) {
 
       // This will store all calloutStatuses
       $scope.calloutStatuses = [];
       // Default id, which will be increased when a new status is added
+      // This uniquely identifies a callout status in the array
+      // The $index is not reliable enough as it's changing when any element
+      // is removed from the array
       var id = 0;
 
       // Helper method to remove a callout status
-      $scope.remove = function(statusIndex) {
+      $scope.remove = function(statusId) {
 
         // Find it in the array and remove it
         for(var i = $scope.calloutStatuses.length-1; i >= 0; i--) {
-          if($scope.calloutStatuses[i].id == statusIndex) {
+          if($scope.calloutStatuses[i].id == statusId) {
             $scope.calloutStatuses.splice(i, 1);
           }
         }
@@ -55,8 +60,8 @@ angular.module('angular-ec-callout', [])
 
       // Example calloutStatus object
       /*$scope.calloutStatus = {
-        type: '',
-        message: '',
+        type: 'alert',
+        message: 'This is gonna be displayed to a user',
         img: false,
         timeout: 2000,
         remove: false
@@ -66,17 +71,20 @@ angular.module('angular-ec-callout', [])
       // and display the status
       CalloutService.subscribe($scope, function(event, status) {
 
-        // If status contains remove property, we want to remove all statuses
+        // If status contains remove property, we want to remove all callouts
         if(status.remove) {
-          for(var i = 0; i < $scope.calloutStatuses.length; i++) {
+          for(var i = $scope.calloutStatuses.length - 1; i >= 0; i--) {
             $scope.calloutStatuses.pop();
           }
 
         // Otherwise we want to add another status with data provided
         } else {
 
-          // Add status to calloutStatuses array
-          // Set the id and increment it
+          // Define unique index
+          // We need this index for timeout method because during the timeout
+          // the index of a status in the array may change because any
+          // statuse can be removed before the timeout is finished
+          // so we need a way to address a specific status that should be removed
           status.id = id++;
           // Push it and show it
           $scope.calloutStatuses.push(status);
@@ -93,6 +101,7 @@ angular.module('angular-ec-callout', [])
       });
 
     },
+
     template: '<div ng-repeat="calloutStatus in calloutStatuses track by $index" class="callout {{calloutStatus.type}}">' +
                 '<p>' +
                   '<img ng-if="calloutStatus.img" ng-src="{{calloutStatus.img}}" alt="" />' +

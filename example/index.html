@@ -10,11 +10,13 @@
   <body ng-app="exampleApp" ng-controller="mainController as mainCtrl">
     <ec-callout></ec-callout>
 
-    <button type="button" name="alert-button" ng-click="mainCtrl.callAlert()">Gimme alert callout!</button>
+    <button type="button" name="alert-button" ng-click="mainCtrl.callAlert()">This callout will disappear in 2 secs!</button>
     <button type="button" name="alert-button" ng-click="mainCtrl.callSuccess()">Gimme success callout!</button>
     <button type="button" name="alert-button" ng-click="mainCtrl.callDefault()">Gimme default callout!</button>
+    <button type="button" name="alert-button" ng-click="mainCtrl.callRemove()">This button will remove all currently displayed callouts</button>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="../dist/angular-ec-callout.js"></script>
     <script src="app.js"></script>
   </body>
