@@ -1,0 +1,37 @@
+{
+  "name": "angular-ec-callout",
+  "version": "0.0.3",
+  "authors": [
+    "Emil Cieslar <emil.cieslar@gmail.com>"
+  ],
+  "description": "Reusable callout directive and service",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "alert",
+    "callout"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/emilcieslar/angular-ec-callout",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-animate": "^1.5.3"
+  },
+  "_release": "0.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.3",
+    "commit": "0ecf7ca5ad03daea897fa18b1361fc7f2c26ce6a"
+  },
+  "_source": "https://github.com/emilcieslar/angular-ec-callout.git",
+  "_target": "^0.0.3",
+  "_originalSource": "angular-ec-callout",
+  "_direct": true
+}
