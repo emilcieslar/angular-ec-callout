@@ -102,7 +102,7 @@ angular.module('angular-ec-callout', ['ngAnimate'])
 
     },
 
-    template: '<div ng-repeat="calloutStatus in calloutStatuses track by $index" class="callout {{calloutStatus.type}}">' +
+    template: '<div ng-repeat="calloutStatus in calloutStatuses track by $index" class="callout ec-callout {{calloutStatus.type}}">' +
                 '<p>' +
                   '<img ng-if="calloutStatus.img" ng-src="{{calloutStatus.img}}" alt="" />' +
                   '{{calloutStatus.message}}' +
