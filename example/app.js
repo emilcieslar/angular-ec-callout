@@ -6,7 +6,8 @@ angular.module('exampleApp', ['angular-ec-callout'])
     CalloutService.notify({
       type: 'alert',
       message: 'Alert callout!',
-      img: 'https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-alert.svg'
+      img: 'https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-alert.svg',
+      timeout: 2000
     })
   }
 

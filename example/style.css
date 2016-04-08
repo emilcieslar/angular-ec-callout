@@ -1,13 +1,21 @@
+ec-callout {
+  overflow: hidden;
+  clear: both;
+  position: absolute;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+}
+
 .callout {
   overflow: hidden;
   clear: both;
   border-radius: 4px;
   background: #f1f1f1;
   padding: 5px;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
+  margin-bottom: 5px;
+  position: relative;
 }
 
   .callout p {

@@ -30,104 +30,75 @@ angular.module('angular-ec-callout', [])
 
 .directive('ecCallout', ['ecCalloutService', '$timeout', function(CalloutService, $timeout) {
 
-  // Awesome fade in and fade out helper functions
-  // by Chris Buttery
-  // http://www.chrisbuttery.com/articles/fade-in-fade-out-with-javascript/
-  // modified to fallback to simple hide and show if not supported by older
-  // browsers including IE9 and IE8 (not going further because opacity is not
-  // supported in <IE8)
-
-  // Fade out
-  function fadeOut(el){
-    if(typeof(requestAnimationFrame) !== typeof(Function)) {
-      el.style.display = "none";
-      return false;
-    }
-
-    el.style.opacity = 1;
-
-    (function fade() {
-      if ((el.style.opacity -= .05) < 0) {
-        el.style.display = "none";
-      } else {
-        requestAnimationFrame(fade);
-      }
-    })();
-
-  }
-
-  // Fade in
-  function fadeIn(el, display){
-    if(typeof(requestAnimationFrame) !== typeof(Function)) {
-      el.style.display = display || "block";
-      return false;
-    }
-
-    el.style.opacity = 0;
-    el.style.display = display || "block";
-
-    (function fade() {
-      var val = parseFloat(el.style.opacity);
-      if (!((val += .05) > 1)) {
-        el.style.opacity = val;
-        requestAnimationFrame(fade);
-      }
-    })();
-
-  }
-
   // Return the directive
   return {
     restrict: 'AE',
     scope: false,
     link: function($scope, $elem, $attrs) {
 
-      // Hidden by default
-      $elem.css({'display':'none'});
+      // This will store all calloutStatuses
+      $scope.calloutStatuses = [];
+      // Default id, which will be increased when a new status is added
+      var id = 0;
 
-      $scope.calloutStatus = {
-        type: '',
-        message: '',
-        img: false
+      // Helper method to remove a callout status
+      $scope.remove = function(statusIndex) {
+
+        // Find it in the array and remove it
+        for(var i = $scope.calloutStatuses.length-1; i >= 0; i--) {
+          if($scope.calloutStatuses[i].id == statusIndex) {
+            $scope.calloutStatuses.splice(i, 1);
+          }
+        }
+
       }
 
-      // When the callout notification is sent, update status and display the callout
+      // Example calloutStatus object
+      /*$scope.calloutStatus = {
+        type: '',
+        message: '',
+        img: false,
+        timeout: 2000,
+        remove: false
+      }*/
+
+      // When the callout notification is sent, add status to calloutStatuses
+      // and display the status
       CalloutService.subscribe($scope, function(event, status) {
 
-        // If status contains remove property, we want to remove the callout
+        // If status contains remove property, we want to remove all statuses
         if(status.remove) {
-          fadeOut($elem[0]);
+          for(var i = 0; i < $scope.calloutStatuses.length; i++) {
+            $scope.calloutStatuses.pop();
+          }
 
-        // Otherwise we want to display it with data provided
+        // Otherwise we want to add another status with data provided
         } else {
 
-          // Set data and display callout
-          $scope.calloutStatus = status;
-          fadeIn($elem[0]);
+          // Add status to calloutStatuses array
+          // Set the id and increment it
+          status.id = id++;
+          // Push it and show it
+          $scope.calloutStatuses.push(status);
 
-          // If timeout is set, we must hide the callout in seconds provided
+          // If timeout is set, we must remove the callout in seconds provided
           if(status.timeout) {
             $timeout(function() {
-              fadeOut($elem[0]);
+              $scope.remove(status.id);
             },status.timeout);
           }
 
         }
 
-      })
-
-      // Catch click on close and hide the directive
-      $scope.close = function() {
-        fadeOut($elem[0]);
-      }
+      });
 
     },
-    template: '<div class="callout {{calloutStatus.type}}">' +
+    template: '<div ng-repeat="calloutStatus in calloutStatuses track by $index" class="callout {{calloutStatus.type}}">' +
                 '<p>' +
                   '<img ng-if="calloutStatus.img" ng-src="{{calloutStatus.img}}" alt="" />' +
                   '{{calloutStatus.message}}' +
                 '</p>' +
-                '<a class="close-button" ng-click="close()">&times;</a>' +
+                '<a class="close-button" ng-click="remove(calloutStatus.id)">&times;</a>' +
               '</div>'
   }
 
