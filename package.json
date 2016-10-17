@@ -1,6 +1,6 @@
 {
   "name": "angular-ec-callout",
-  "version": "1.1.0",
+  "version": "1.0.1",
   "author": "Emil Cieslar <cieslar@webkreativ.cz>",
   "main": "dist/angular-ec-callout.js",
   "description": "Reusable callout (notification) directive and service. Use it whenever you need to display a (success, error or whatever) message to a user. Does not need jQuery.",
