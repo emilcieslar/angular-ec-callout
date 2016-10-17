@@ -10,6 +10,11 @@ Reusable callout (notification) directive and service. Use it whenever you need 
 bower install angular-ec-callout
 ```
 
+### Or install via npm
+```bash
+npm install angular-ec-callout
+```
+
 ### Add as a dependency to your app
 ```javascript
 angular.module('yourApp', ['angular-ec-callout'])
@@ -42,7 +47,7 @@ The directive uses `.callout` class, which is basically the callout wrapper. The
 The close button has class `.close-button`
 
 ### Add animations
-You can also animate the callout when it's added or removed to/from the queue. Look at the following example.
+If you add 'ngAnimate' to your app dependencies, you can also animate the callout when it's added or removed to/from the queue. Look at the following example.
 
 ```css
 .callout {
