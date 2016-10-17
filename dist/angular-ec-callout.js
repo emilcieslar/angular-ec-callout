@@ -33,7 +33,7 @@
 
   // Create module
   var moduleName = 'angular-ec-callout';
-  var mod = angular.module(moduleName, ['ngAnimate']);
+  var mod = angular.module(moduleName, []);
 
   mod.factory('ecCalloutService', ['$rootScope', function($rootScope) {
 
